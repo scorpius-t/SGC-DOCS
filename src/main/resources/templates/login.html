@@ -45,7 +45,11 @@
           <a class="nav-link" href="./index.html#docs-clientes">Documentos <br> de clientes</a>
         </li>
         <li class="nav-item ms-auto ">
-          <a class="nav-link disabled"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+          <div>
+            <form th:action="@{/logout}" method="post">
+              <button type="submit" disabled value="Sign Out" class="btn btn-info mt-2">Log out <i class="bi bi-box-arrow-in-right"></i></button>
+            </form>
+          </div>
         </li>
       </ul>
     </div>
@@ -63,7 +67,7 @@
     <div class="mb-3 row">
       <label for="username" class="col-sm-2 col-form-label">Usuario</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext" value="" id="username" name="username"/>
+        <input type="text" class="form-control-plaintext" value="usuario" id="username" name="username"/>
       </div>
     </div>
     <div class="mb-3 row">
