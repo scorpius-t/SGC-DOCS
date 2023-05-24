@@ -1,4 +1,4 @@
-package com.IEC.SGCDOCS.securingweb;
+package com.IEC.SGCDOCS.securingweb.config;
 
 
 
@@ -25,6 +25,7 @@ public class WebSecurityConfig {
                     )
                     .formLogin((form) -> form
                             .loginPage("/login")
+                            .defaultSuccessUrl("/index")
                             .permitAll()
                     )
                     .logout((logout) -> logout

@@ -1,4 +1,4 @@
-package com.IEC.SGCDOCS.securingweb;
+package com.IEC.SGCDOCS.securingweb.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -17,6 +17,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/docs-emitidos.html").setViewName("docs-emitidos");
         registry.addViewController("/files/").setViewName("/media/files/");
         registry.addViewController("/").setViewName("forward:/index");
+        registry.addViewController("").setViewName("forward:/index");
 
     }
 
