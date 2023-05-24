@@ -10,25 +10,25 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
-
-@SpringBootApplication
-public class sqlConectionAPP implements CommandLineRunner {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-
-    public static void main(String[] args) {
-        SpringApplication.run(sqlConectionAPP.class, args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        String sql = "SELECT * FROM pronosticos";
-        List<Pronosticos> pronosticos = jdbcTemplate.query(sql,
-                BeanPropertyRowMapper.newInstance(Pronosticos.class));
-
-        pronosticos.forEach(System.out::println);
-    }
-
-}
+//
+//@SpringBootApplication
+//public class sqlConectionAPP implements CommandLineRunner {
+//
+//    @Autowired
+//    private JdbcTemplate jdbcTemplate;
+//
+//
+//    public static void main(String[] args) {
+//        SpringApplication.run(sqlConectionAPP.class, args);
+//    }
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//        String sql = "SELECT * FROM pronosticos";
+//        List<Pronosticos> pronosticos = jdbcTemplate.query(sql,
+//                BeanPropertyRowMapper.newInstance(Pronosticos.class));
+//
+//        pronosticos.forEach(System.out::println);
+//    }
+//
+//}

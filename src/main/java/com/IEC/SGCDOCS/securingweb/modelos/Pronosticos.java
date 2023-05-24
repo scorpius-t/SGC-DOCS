@@ -21,8 +21,15 @@ public class Pronosticos {
         this.setEquipoV(equipoV);
         this.setGolesV(golesV);
     }
-
-    protected Pronosticos(){}
+    public void agregar(int numeroApuesta, String apostador, String equipoL,String golesL, String equipoV, String golesV){
+        this.setNumeroApuesta(numeroApuesta);
+        this.setApostador(apostador);
+        this.setEquipoL(equipoL);
+        this.setGolesL(golesL);
+        this.setEquipoV(equipoV);
+        this.setGolesV(golesV);
+    }
+    public Pronosticos(){}
 
 
 }
