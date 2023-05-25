@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SgcDocsApplication {
 
-	public static LeerPatsDB leerPronosticosDB=new LeerPatsDB();
+	public static LeerPatsDB leerPatsDB =new LeerPatsDB();
 	public static void main(String[] args) {
 
 		SpringApplication.run(SgcDocsApplication.class, args);
@@ -21,7 +21,7 @@ public class SgcDocsApplication {
 			System.out.println("Finalizando ejecucion por error de lectura de config.properties");
 			return; // finaliza el programa por error de lectura de configuracion
 		}
-		leerPronosticosDB.leer();
+		leerPatsDB.leer();
 
 	}
 

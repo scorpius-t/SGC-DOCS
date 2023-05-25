@@ -16,7 +16,7 @@ public class LeerPatsDB extends ConexionDB {
         try {
             this.conectar();
             PreparedStatement st= this.getConnection().prepareStatement(
-                    "SELECT apostador, equipoL, golesL, equipoV, golesV FROM " +
+                    "SELECT numeroApuesta, apostador, equipoL, golesL, equipoV, golesV FROM " +
                             "pronosticos"
             );
             reader=st.executeQuery();
