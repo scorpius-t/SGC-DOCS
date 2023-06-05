@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 
 
 
-@ApplicationPath("/api")
-@Component
-public class JerseyConfig extends ResourceConfig {
-
-    public JerseyConfig(){
-//        register(PatControlador.class);
-//        register(GenericExceptionMapper.class);
-//        this.packages("com.IEC.SGCDOCS.securingweb.controlador")
-
-        ;
-    }
-}
+//@ApplicationPath("/api")
+//@Component
+//public class JerseyConfig extends ResourceConfig {
+//
+//    public JerseyConfig(){
+////        register(PatControlador.class);
+////        register(GenericExceptionMapper.class);
+////        this.packages("com.IEC.SGCDOCS.securingweb.controlador")
+//
+//        ;
+//    }
+//}
