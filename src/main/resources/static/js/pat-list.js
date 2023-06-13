@@ -38,7 +38,7 @@ async function findAllPats(){
 
 async function getPats(){
 
-    const response = await fetch('http://localhost:8080/pat/listapats');
+    const response = await fetch('http://localhost:8080/pat/lista');
     const myJson = await response.json();
 
     return myJson;

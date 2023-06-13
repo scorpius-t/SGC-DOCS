@@ -27,12 +27,12 @@ public class PatControlador {
     @Autowired
     private PatServicio patServicio;
 
-    @GetMapping("/listapats")
+    @GetMapping("/lista")
     public List<Pats> getAllPats(){
         log.info("entrando a listapats");
         log.info(patServicio.toString());
 
-        List<Pats> listadoPats= patServicio.getAllPats();
+        List<Pats> listadoPats= patServicio.getAll();
         System.out.println(listadoPats);
         return listadoPats;
     }
