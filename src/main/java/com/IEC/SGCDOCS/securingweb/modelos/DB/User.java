@@ -27,6 +27,9 @@ public class User implements UserDetails {
     @Column(name = "account_non_locked", nullable = false)
     private boolean accountNonLocked;
 
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -37,6 +40,7 @@ public class User implements UserDetails {
     public String getUsername() {
         return username;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

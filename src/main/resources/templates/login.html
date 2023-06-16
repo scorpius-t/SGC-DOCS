@@ -58,7 +58,7 @@
 <!-- seccion login -->
 <section class="login bg-light" id="login">
   <div th:if="${param.error}">
-    Invalid username and password.
+    [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]].
   </div>
   <div th:if="${param.logout}">
     You have been logged out.

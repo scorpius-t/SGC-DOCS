@@ -10,6 +10,7 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -31,18 +32,27 @@ import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
 
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-        User user= userDetailsService.loadUserByUsername(username);
+        User user=new User();
+        boolean isUsrNotFound=false;
+        try {
+            user = userDetailsService.loadUserByUsername(username);
 
-        System.out.println( username + " "+ user.getUsername() + "|| "+ password + " "+ user.getPassword());
-        if (!(username.equals(user.getUsername()) || password.equals(user.getPassword()))) {
+        }catch (UsernameNotFoundException e){
+            user.setUsername(username);
+            isUsrNotFound=true;
+        }
+        if ((!user.isAccountNonLocked())&& !isUsrNotFound)
+            throw new AuthenticationServiceException("Cuenta bloqueada. Contacte al administrador");
 
+        if ((!(username.equals(user.getUsername()) && password.equals(user.getPassword())))||isUsrNotFound) {
             System.out.println( username + " "+ user.getUsername() + "|| "+ password + " "+ user.getPassword());
 
-
-           processFailedAttempts(username, user);
-            throw new AuthenticationServiceException("no se puede loggear");
-
+            if(!isUsrNotFound)
+                processFailedAttempts(username, user);
+            throw new AuthenticationServiceException("Usuario y/o contraseña invalidos");
         }
+
+        //  Reset contador de intentos
         Optional<Attempts>
                 userAttempts = attemptsRepository.findAttemptsByUsername(username);
         if (userAttempts.isPresent()) {
@@ -69,7 +79,7 @@ import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
                     ATTEMPTS_LIMIT) {
                 user.setAccountNonLocked(false);
                 userRepository.save(user);
-                throw new LockedException("Too many invalid attempts. Account is locked!!");
+                throw new LockedException("Demasiados intentos, se bloqueó la cuenta");
             }
         }
     }
