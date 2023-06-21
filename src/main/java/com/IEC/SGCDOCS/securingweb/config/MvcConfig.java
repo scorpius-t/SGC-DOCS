@@ -1,6 +1,7 @@
 package com.IEC.SGCDOCS.securingweb.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,6 +20,13 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("forward:/index.html");
         registry.addViewController("").setViewName("forward:/index.html");
 
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/files/**")
+                .addResourceLocations("file:///E:/TEMP/");
     }
 
 }
