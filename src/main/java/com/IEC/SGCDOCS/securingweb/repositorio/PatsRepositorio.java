@@ -9,5 +9,7 @@ import java.util.List;
 public interface PatsRepositorio extends JpaRepository<Pats, Long> {
 
     List<Pats> findByPat(Float pat);
+    List<Pats> findAllByOrderByPatAsc();
+
 
 }

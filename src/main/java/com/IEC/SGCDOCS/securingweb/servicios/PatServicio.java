@@ -18,8 +18,8 @@ public class PatServicio {
     private PatsRepositorio patsRepositorio;
 
     public List<Pats> getAll() {
-        return this.patsRepositorio.findAll();
-
+//        return this.patsRepositorio.findAll();
+        return this.patsRepositorio.findAllByOrderByPatAsc();
     }
 
     @Override

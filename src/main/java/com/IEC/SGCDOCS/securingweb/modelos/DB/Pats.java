@@ -14,9 +14,7 @@ import java.sql.Date;
 @Table(name = "PATS")
 public class Pats {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     @Column(name = "PAT", nullable = false)
     private Float pat;
     @Column(name = "Prioridad")
@@ -81,6 +79,9 @@ public class Pats {
     private Date fecha5;
     @Column(name = "Observaciones")
     private String observaciones;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 //    private Pats (){}
 
