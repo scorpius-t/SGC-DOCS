@@ -17,6 +17,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/index.html").setViewName("index");
         registry.addViewController("/docs-emitidos.html").setViewName("docs-emitidos");
         registry.addViewController("/files/").setViewName("/media/files/");
+//        registry.addViewController("/static-docs/").setViewName("/static-docs/");
         registry.addViewController("/").setViewName("forward:/index.html");
         registry.addViewController("").setViewName("forward:/index.html");
 
@@ -25,7 +26,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/files/**")
+                .addResourceHandler("/static-docs/**")
                 .addResourceLocations("file:///E:/TEMP/");
     }
 

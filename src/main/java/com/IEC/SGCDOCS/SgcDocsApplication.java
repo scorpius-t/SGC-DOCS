@@ -11,11 +11,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class SgcDocsApplication {
 
 //	public static LeerPatsDB leerPatsDB =new LeerPatsDB();
+public final static Configura conf= new Configura();
 	public static void main(String[] args) {
 
 		SpringApplication.run(SgcDocsApplication.class, args);
 
-		Configura conf= new Configura();
+
 		try {
 			conf.instanciarConfig();
 		} catch (Exception e){
