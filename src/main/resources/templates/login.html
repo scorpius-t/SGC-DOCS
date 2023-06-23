@@ -57,30 +57,32 @@
 </nav>
 <!-- seccion login -->
 <section class="login bg-light" id="login">
-  <div th:if="${param.error}">
-    [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]].
-  </div>
-  <div th:if="${param.logout}">
-    You have been logged out.
-  </div>
-  <form th:action="@{/login}" method="POST">
-    <div class="mb-3 row">
-      <label for="username" class="col-sm-2 col-form-label">Usuario</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext" value="usuario" id="username" name="username"/>
-      </div>
-    </div>
-    <div class="mb-3 row">
-      <label for="password" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="password" name="password"/>
-      </div>
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-3" value="Sign In">Ingresar</button>
-    </div>
-  </form>
+  <div class="mx-3">
 
+    <div th:if="${param.error}" class="text-danger my-3">
+      [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]].
+    </div>
+    <div th:if="${param.logout}" class="text-danger my-3">
+      You have been logged out.
+    </div>
+    <form th:action="@{/login}" method="POST">
+      <div class="my-3 row justify-content-center">
+        <label for="username" class="col-lg-1 col-form-label ">Usuario: </label>
+        <div class="col-lg-3">
+          <input type="text" class="form-control" value="" placeholder="usuario" id="username" name="username"/>
+        </div>
+      </div>
+      <div class="mb-3 row justify-content-center">
+        <label for="password" class="col-lg-1 col-form-label">Password: </label>
+        <div class="col-lg-3">
+          <input type="password" class="form-control" id="password" name="password" placeholder="contraseña"/>
+        </div>
+      </div>
+      <div class=" row justify-content-center">
+        <button type="submit" class="btn btn-primary col-lg-1 mb-3" value="Sign In">Ingresar</button>
+      </div>
+    </form>
+  </div>
 </section>
 
 

@@ -32,7 +32,7 @@ public class Configura {
             this.setPathManualProc3(prop.getProperty("pathManualProc3"));
             this.setPathDocsCliente1(prop.getProperty("PathDocsCliente1"));
             this.setPathDocsCliente2(prop.getProperty("PathDocsCliente2"));
-            this.setPathDocsCliente2(prop.getProperty("PathDocsCliente2"));
+            this.setPathDocsCliente3(prop.getProperty("PathDocsCliente3"));
 
         } catch (Exception e) {
             e.printStackTrace();
