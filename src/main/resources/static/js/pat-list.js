@@ -1,4 +1,5 @@
 document.getElementById("ConsultaDB").addEventListener("click", findAll);
+document.getElementById("descargarExcel").addEventListener("click", downloadExcel);
 
 async function findAll(){
 
@@ -23,12 +24,14 @@ async function findAll(){
 
     var table = document.createElement("table");
     table.className="table table-striped align-middle";
+    table.id="tabla-consulta";
     var rows=myJson.length;
     if (rows>0){
         var cellsHeader=_keys(myJson[0])
     }
     if (cellsHeader.length > 1) {
         var thead=table.createTHead();
+        thead.className="sticky-top bg-primary text-light fw-semibold"
         var rowh = thead.insertRow(0);
         for (var j = 0; j < cellsHeader.length; j++) {
             var cell = rowh.insertCell(-1);
@@ -57,6 +60,72 @@ async function findAll(){
 
 }
 
+function downloadExcel(){
+
+    // var tableToExcel = (function() {
+
+    //     var uri = 'data:application/vnd.ms-excel;base64,'
+    //       , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    //       , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    //       , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+    //     return function(table, name) {
+    //       if (!table.nodeType) table = document.getElementById(table)
+    //       var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+    //       window.location.href = uri + base64(format(template, ctx))
+    //     }
+    //   })()
+
+    // var blob = new Blob([document.getElementById('tabla-consulta').innerHTML], {
+    //     type: "text/plain;charset=utf-8;"
+    // });
+    // var link=window.URL.createObjectURL(blob);
+    // window.location.href=link;
+
+    // var location = 'data:application/vnd.ms-excel;base64,';
+	// var excelTemplate = '<html> ' +
+	// 	'<head> ' +
+	// 	'<meta http-equiv="content-type" content="text/plain; charset=UTF-8"/> ' +
+	// 	'</head> ' +
+	// 	'<body> ' +
+	// 	document.getElementById("tabla-consulta").innerHTML +
+	// 	'</body> ' +
+	// 	'</html>'
+	// window.location.href = location + window.btoa((unescape(encodeURIComponent(excelTemplate))));
+
+    // var table = document.getElementById('tabla-consulta'); // id of table
+    // var tableHTML = table.outerHTML;
+    // var fileName = 'Consulta.xls';
+
+    // var msie = window.navigator.userAgent.indexOf("MSIE ");
+
+    // // If Internet Explorer
+    // if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+    //     dummyFrame.document.open('txt/html', 'replace');
+    //     dummyFrame.document.write(tableHTML);
+    //     dummyFrame.document.close();
+    //     dummyFrame.focus();
+    //     return dummyFrame.document.execCommand('SaveAs', true, fileName);
+    // }
+    // //other browsers
+    // else {
+    //     var a = document.createElement('a');
+    //     tableHTML = tableHTML.replace(/  /g, '').replace(/ /g, '%20'); // replaces spaces
+    //     a.href = 'data:application/vnd.ms-excel;charset=utf-8,' + tableHTML;
+    //     a.setAttribute('download', fileName);
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     document.body.removeChild(a);
+    // }
+}
+
+function btoa_utf8(value) {
+    return btoa(
+        String.fromCharCode(
+            ...new TextEncoder('utf-8')
+                   .encode(value)
+        )
+    );
+}
 
 async function getPats(){
     var urlDomain = 'http://' + window.location.host + '/pat/lista';
