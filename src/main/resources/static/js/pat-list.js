@@ -33,6 +33,7 @@ async function findAll(){
         for (var j = 0; j < cellsHeader.length; j++) {
             var cell = rowh.insertCell(-1);
             cell.innerHTML = buscarHeaderTabla(cellsHeader[j]);
+            cell.className="encabezado"
         }
     var tbody=table.createTBody();
     for (var i = 0; i < rows; i++) {
@@ -237,7 +238,7 @@ function buscarHeaderTabla(textoABuscar){
         case "respuestaIor":
                 texto="Respuesta\n IOR";
                 break;
-        case "CierreIor":
+        case "cierreIor":
                 texto="Cierre IOR";
                 break;
         case "registroEnvio":
