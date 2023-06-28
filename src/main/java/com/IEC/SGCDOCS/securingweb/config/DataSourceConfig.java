@@ -7,10 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.util.Properties;
 
@@ -47,9 +44,12 @@ public class DataSourceConfig {
     public void instanciarPro() throws FileNotFoundException, IOException {
         try {
             Properties prop = new Properties();
-            String home = System.getProperty("user.dir");
-            File f = new File(home + "\\dbconfig.properties");
-            prop.load(new FileInputStream(f));
+            InputStream inputStream = this.getClass().getResourceAsStream("/dbconfig.properties");
+
+//                String home = System.getProperty("user.dir");
+//            File f = new File(home + "\\dbconfig.properties");
+//            prop.load(new FileInputStream(f));
+                prop.load(inputStream);
             this.setServidor(prop.getProperty("server"));
             this.setBasededato(prop.getProperty("database"));
             this.setUsuario(prop.getProperty("user"));

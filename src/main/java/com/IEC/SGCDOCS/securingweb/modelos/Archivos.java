@@ -11,4 +11,12 @@ public class Archivos {
     public Archivos(String fileName) {
         this.fileName = fileName;
     }
+
+    @Override
+    public String toString() {
+        return "Archivos{" +
+                "fileName='" + fileName + '\'' +
+                ", path='" + path + '\'' +
+                '}';
+    }
 }

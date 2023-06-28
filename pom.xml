@@ -103,8 +103,9 @@
 		</dependency>
 
 	</dependencies>
-
+	<packaging>war</packaging>
 	<build>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
