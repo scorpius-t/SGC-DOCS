@@ -33,6 +33,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry
                 .addResourceHandler("/static-docs/**")
+//                .addResourceLocations("file:///D:/TEMP/");
                 .addResourceLocations(SgcDocsApplication.conf.getResource1Location());
     }
 

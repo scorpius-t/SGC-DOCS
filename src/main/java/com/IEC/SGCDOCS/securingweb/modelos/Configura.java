@@ -35,11 +35,24 @@ public class Configura {
             this.setPathDocsCliente2(prop.getProperty("PathDocsCliente2"));
             this.setPathDocsCliente3(prop.getProperty("PathDocsCliente3"));
             this.setResource1Location(prop.getProperty("Resource1Location"));
+            System.out.println(this.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "Configura{" +
+                "pathFormularios='" + pathFormularios + '\'' +
+                ", pathManualProc1='" + pathManualProc1 + '\'' +
+                ", pathManualProc2='" + pathManualProc2 + '\'' +
+                ", pathManualProc3='" + pathManualProc3 + '\'' +
+                ", PathDocsCliente1='" + PathDocsCliente1 + '\'' +
+                ", PathDocsCliente2='" + PathDocsCliente2 + '\'' +
+                ", PathDocsCliente3='" + PathDocsCliente3 + '\'' +
+                ", Resource1Location='" + Resource1Location + '\'' +
+                '}';
+    }
 }
