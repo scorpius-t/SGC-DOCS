@@ -1,0 +1,17 @@
+Ejecucion
+
+java -cp "sgc-docs.jar" com.IEC.SGCDOCS.SgcDocsApplication
+
+
+
+===============================================================
+Finalizar:
+
+Desde CMD:
+
+C:\Users\anonimo>jps
+13936 Jps
+17008 SgcDocsApplication           (escribir el numero de este proceso en el comando siguiente)
+18768
+
+C:\Users\anonimo>taskkill -f /PID 17008

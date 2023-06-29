@@ -107,21 +107,59 @@
 <!--			<scope>provided</scope>-->
 		</dependency>
 	</dependencies>
-	<packaging>war</packaging>
+<!--	<packaging>war</packaging>-->
 	<build>
 
 		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					<excludes>-->
+<!--						<exclude>-->
+<!--							<groupId>org.projectlombok</groupId>-->
+<!--							<artifactId>lombok</artifactId>-->
+<!--						</exclude>-->
+<!--						<excludes>META-INF/*.SF,META-INF/*.DSA,META-INF/*.RSA</excludes>-->
+<!--						<excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>-->
+<!--					</excludes>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
+
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.4.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<filters>
+								<filter>
+								<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+<!--							<artifactSet>-->
+<!--								<excludes>-->
+<!--									<exclude>classworlds:classworlds</exclude>-->
+<!--									<exclude>junit:junit</exclude>-->
+<!--									<exclude>jmock:*</exclude>-->
+<!--									<exclude>*:xml-apis</exclude>-->
+<!--									<exclude>org.apache.maven:lib:tests</exclude>-->
+<!--									<exclude>log4j:log4j:jar:</exclude>-->
+<!--								</excludes>-->
+<!--							</artifactSet>-->
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

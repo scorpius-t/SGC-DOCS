@@ -22,11 +22,12 @@ public class Configura {
         try {
             Properties prop = new Properties();
 
-            InputStream inputStream = this.getClass().getResourceAsStream("/config.properties");
-            prop.load(inputStream);
-//            String home = System.getProperty("user.dir");
-//            File f = new File(home + "\\config.properties");
-//            prop.load(new FileInputStream(f));
+//            InputStream inputStream = this.getClass().getResourceAsStream("/config.properties");
+//            prop.load(inputStream);
+
+            String home = System.getProperty("user.dir");
+            File f = new File(home + "\\config.properties");
+            prop.load(new FileInputStream(f));
             this.setPathFormularios(prop.getProperty("pathFormularios"));
             this.setPathManualProc1(prop.getProperty("pathManualProc1"));
             this.setPathManualProc2(prop.getProperty("pathManualProc2"));
