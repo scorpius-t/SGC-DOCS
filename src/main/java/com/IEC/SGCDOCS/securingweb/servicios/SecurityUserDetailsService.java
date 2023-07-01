@@ -1,7 +1,17 @@
 package com.IEC.SGCDOCS.securingweb.servicios;
 
+import com.IEC.SGCDOCS.securingweb.modelos.UsuarioVisualizacion;
+import com.IEC.SGCDOCS.securingweb.modelos.DB.Attempts;
 import com.IEC.SGCDOCS.securingweb.modelos.DB.User;
+import com.IEC.SGCDOCS.securingweb.repositorio.AttemptsRepository;
 import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
+
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +23,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired private AttemptsRepository attemptsRepository;
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -20,6 +31,45 @@ public class SecurityUserDetailsService implements UserDetailsService {
                 .orElseThrow(() ->new UsernameNotFoundException("User not present"));
         return user;
 
+    }
+
+    public List<UsuarioVisualizacion> getAllUserVis(){
+        List<User> tmpListUsuarios =userRepository.findAll();
+        List<UsuarioVisualizacion> lista=  tmpListUsuarios.stream()
+        .map(usr->new UsuarioVisualizacion(usr.getUsername(), usr.getRoles(),usr.isAccountNonLocked()))
+        .collect(Collectors.toList());
+                
+        return lista;
+
+    }
+
+    public List<Attempts> getAllAttemps(){
+
+        return attemptsRepository.findAll();
+    }
+
+    public void enableUser(User user){
+        user.setAccountNonLocked(true);
+        userRepository.save(user);
+    }
+
+    public void deleteAttemp(long id){
+
+        Optional<Attempts> attemp = attemptsRepository.findAttemptsById(id);
+        if (!attemp.isEmpty()) {
+            Attempts attempToDel=attemp.get();
+            Optional<User> user = userRepository.findUserByUsername(attempToDel.getUsername());
+            if (!user.isEmpty())
+                enableUser(user.get());
+
+        }
+
+        attemptsRepository.deleteById(id);
+
+    }
+
+    public void deleteAllAttemps(){
+        attemptsRepository.deleteAll();
     }
 
     public void createUser(UserDetails user){

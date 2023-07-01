@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Attempts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(name = "usr", nullable = false)
     private String username;
     private int attempts;

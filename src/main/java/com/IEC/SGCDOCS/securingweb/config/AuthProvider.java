@@ -47,8 +47,8 @@ import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
         if ((!(username.equals(user.getUsername()) && password.equals(user.getPassword())))||isUsrNotFound) {
             System.out.println( username + " "+ user.getUsername() + "|| "+ password + " "+ user.getPassword());
 
-            if(!isUsrNotFound)
-                processFailedAttempts(username, user);
+//            if(!isUsrNotFound)
+                processFailedAttempts(username, user, isUsrNotFound);
             throw new AuthenticationServiceException("Usuario y/o contraseña invalidos");
         }
 
@@ -62,7 +62,7 @@ import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
         }
         return new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),user.getAuthorities() );
     }
-    private void processFailedAttempts(String username, User user) {
+    private void processFailedAttempts(String username, User user, boolean userNotFound) {
         Optional<Attempts>
                 userAttempts = attemptsRepository.findAttemptsByUsername(username);
         if (userAttempts.isEmpty()) {
@@ -75,10 +75,13 @@ import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
             attempts.setAttempts(attempts.getAttempts() + 1);
             attemptsRepository.save(attempts);
 
-            if (attempts.getAttempts() + 1 >
-                    ATTEMPTS_LIMIT) {
-                user.setAccountNonLocked(false);
-                userRepository.save(user);
+            if ((attempts.getAttempts() + 1 >
+                    ATTEMPTS_LIMIT) ) {
+
+                if (userNotFound==false){ // si existe usuario, se bloquea
+                    user.setAccountNonLocked(false);
+                    userRepository.save(user);
+                }
                 throw new LockedException("Demasiados intentos, se bloqueó la cuenta");
             }
         }
