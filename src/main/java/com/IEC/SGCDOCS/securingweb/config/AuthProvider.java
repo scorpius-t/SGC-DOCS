@@ -2,13 +2,19 @@ package com.IEC.SGCDOCS.securingweb.config;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.IEC.SGCDOCS.securingweb.servicios.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -60,7 +66,12 @@ import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
             attempts.setAttempts(0);
             attemptsRepository.save(attempts);
         }
-        return new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),user.getAuthorities() );
+        List<String> tmpRoles=new ArrayList<>();
+        tmpRoles.add(user.getRoles()); // modificar para agregar mas de un rol por usuario
+        Set<GrantedAuthority> authorities = tmpRoles.stream()
+                .map((role) -> new SimpleGrantedAuthority(role))
+                .collect(Collectors.toSet());
+        return new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),authorities );//user.getAuthorities()
     }
     private void processFailedAttempts(String username, User user, boolean userNotFound) {
         Optional<Attempts>

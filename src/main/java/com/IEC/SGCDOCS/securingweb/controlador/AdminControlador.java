@@ -16,9 +16,13 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +60,9 @@ public class AdminControlador {
 
 
     }
+
+
+
 //    @GetMapping("/reset-all-attemps")/
 //    @RequestMapping(value = "/reset-all-attemps", method = RequestMethod.GET)
 ////    @RequestMapping(value = "/reset-all-attemps", method = {RequestMethod.GET, RequestMethod.POST})

@@ -24,8 +24,9 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/files/").setViewName("/media/files/");
 //        registry.addViewController("/static-docs/").setViewName("/static-docs/");
         registry.addViewController("/").setViewName("forward:/index.html");
+
         registry.addViewController("").setViewName("forward:/index.html");
-        registry.addViewController("/admin/*").setViewName("forward:/administrator.html");
+//        registry.addViewController("/admin/*").setViewName("forward:/administrator.html");
 
     }
 
