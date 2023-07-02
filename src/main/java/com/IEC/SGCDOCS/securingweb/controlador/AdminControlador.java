@@ -9,6 +9,7 @@ import com.IEC.SGCDOCS.securingweb.repositorio.UserRepository;
 import com.IEC.SGCDOCS.securingweb.servicios.PatServicio;
 import com.IEC.SGCDOCS.securingweb.servicios.SecurityUserDetailsService;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
@@ -46,10 +47,22 @@ public class AdminControlador {
         securityUserDetailsService.deleteAttemp(id);
     }
 
-    @DeleteMapping("/reset-all-attemps")
-    public void deleteAllAttemps(){
+//    @DeleteMapping("/reset-all-attemps")
+    @RequestMapping(value = "/reset-all-attemps", method = {RequestMethod.GET, RequestMethod.POST})
+    public void deleteAllAttemps(HttpServletResponse httpServletResponse) {
         securityUserDetailsService.deleteAllAttemps();
-    }
+        httpServletResponse.setHeader("Location", "/administrator.html");
+        httpServletResponse.setStatus(302);
 
-    
+
+    }
+//    @GetMapping("/reset-all-attemps")/
+//    @RequestMapping(value = "/reset-all-attemps", method = RequestMethod.GET)
+////    @RequestMapping(value = "/reset-all-attemps", method = {RequestMethod.GET, RequestMethod.POST})
+//    public void deleteAllAttempsRedirect(HttpServletResponse httpServletResponse) {
+//        httpServletResponse.setHeader("Location", "/administrator.html");
+//        httpServletResponse.setStatus(302);
+//
+//    }
+//
 }

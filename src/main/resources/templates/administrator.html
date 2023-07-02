@@ -61,16 +61,13 @@
         </div>
       </nav>
 
-      <!-- seccion documentos emitidos -->
+      <!-- Lista de usuarios -->
     <section class="docs-emitidos position-relative bg-light" id="hero">
-      <h2>Consulta de documentación - Base de datos Departamento Gestion de Calidad</h2>
-      <select class="form-select" id="tipo-consulta" name="tipo-consulta" aria-label="Default select example">
-        <option selected value="">Seleccione:</option>
-        <option value="distribDocs">Distribucion de documentos</option>
-        <option value="pat">Paquetes de trabajos</option>
-      </select>
+      <h2>Listado de usuarios</h2>
 
-      <button type="button" class="btn btn-primary mt-3 mb-3"  id="ConsultaDB">Consultar</button>
+      <div id="dvCSV" class="table-responsive text-center table-scrollable"></div>
+      <p id="demo"></p>
+
 
       </div>
 
@@ -78,12 +75,11 @@
     </section>
 <!-- tabla de salida de consulta DB -->
     <section class="consulta-db ">
-      <div id="dvCSV" class="table-responsive text-center table-scrollable"></div>
-      <p id="demo"></p>
+      <h2>Intentos de loggin</h2>
+      <div id="dvCSV2" class="table-responsive text-center table-scrollable"></div>
+      <p id="demo2"></p>
 
-      <p>Consulta a copia de DB en MSSQLServer</p>
 
-      <button type="button" class="btn btn-primary mt-3 mb-3 disabled"  id="descargarExcel">Descargar Tabla</button>
 
     </section>
     <section>
@@ -118,7 +114,7 @@
     </footer>
 
 
-    <script type="text/javascript" src="./js/pat-list.js"></script>
+    <script type="text/javascript" src="./js/logins.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>
