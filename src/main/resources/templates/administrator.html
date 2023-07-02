@@ -79,12 +79,17 @@
       <div id="dvCSV2" class="table-responsive text-center table-scrollable"></div>
       <p id="demo2"></p>
 
-
+      <form action="#" th:action="@{/admin/del-attemp}"  method="delete">
+        <label for="usuario" class="col-lg-1 col-form-label">Usuario a restablecer: </label>
+        <input type="text" th:value="${sourceText}" id="usuario" name="usuario"/>
+        <input type="submit" class="btn btn-primary mt-3 mb-3" Value="Enviar"></input>
+      </form>
 
     </section>
+
     <section>
       <form action="#" th:action="@{/admin/reset-all-attemps}" method="delete">
-        <input type="submit" />
+        <input type="submit" class="btn btn-primary mt-3 mb-3" Value="Reset registro de loggin fallido"></input>
       </form>
     </section>
 

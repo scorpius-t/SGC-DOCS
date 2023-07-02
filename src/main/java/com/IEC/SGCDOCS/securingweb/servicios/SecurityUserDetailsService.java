@@ -53,18 +53,18 @@ public class SecurityUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void deleteAttemp(long id){
+    public void deleteAttemp(String username){
 
-        Optional<Attempts> attemp = attemptsRepository.findAttemptsById(id);
+        Optional<Attempts> attemp = attemptsRepository.findAttemptsByUsername(username);
         if (!attemp.isEmpty()) {
             Attempts attempToDel=attemp.get();
-            Optional<User> user = userRepository.findUserByUsername(attempToDel.getUsername());
-            if (!user.isEmpty())
-                enableUser(user.get());
-
+            attemptsRepository.deleteById(attempToDel.getId());
         }
+        Optional<User> user = userRepository.findUserByUsername(username);
+        if (!user.isEmpty())
+            enableUser(user.get());
 
-        attemptsRepository.deleteById(id);
+
 
     }
 

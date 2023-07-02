@@ -1,11 +1,24 @@
 window.onload=findAll();
 
 async function findAll(){
+
+//var listaUsuarios= new Set();
+
 var myJson= await getUsers();
 generarTabla(myJson,"dvCSV");
 
+//myJson.foreach(function(user)){
+////    listaUsuarios.add(user[username]);
+//})
+
 myJson= await getLogAttemps();
 generarTabla(myJson,"dvCSV2");
+//myJson.foreach(function(user)){
+////    listaUsuarios.add(user["username"]);
+//})
+
+ var select = document.getElementById("lista-usuarios");
+
 
 }
 

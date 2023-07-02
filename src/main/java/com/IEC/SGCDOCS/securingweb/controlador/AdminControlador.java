@@ -25,6 +25,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,10 +46,11 @@ public class AdminControlador {
         return securityUserDetailsService.getAllAttemps();
     }
 
-    @DeleteMapping("/del-attemp/{id}")
-    public void deleteAttempId(@PathVariable long id){
-
-        securityUserDetailsService.deleteAttemp(id);
+    @RequestMapping(value = "/del-attemp", method = {RequestMethod.GET, RequestMethod.POST})
+    public void deleteAttempId(Model model, @RequestParam String usuario, HttpServletResponse httpServletResponse){
+        httpServletResponse.setHeader("Location", "/administrator.html");
+        httpServletResponse.setStatus(302);
+        securityUserDetailsService.deleteAttemp(usuario);
     }
 
 //    @DeleteMapping("/reset-all-attemps")

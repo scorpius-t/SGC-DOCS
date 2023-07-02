@@ -16,8 +16,8 @@ attempts varchar(40) not null,
 )
 
 insert into usuarios (usr, pswd,rol, account_non_locked ) values
-('iecuser', 'iecgaen', 'USER'),
-('adminiec', 'potus1234', 'ADMIN')
+('sgcuser', 'vamossgc', 'USER'),
+('adminsgc', 'planta1234', 'ADMIN')
 
 
 
