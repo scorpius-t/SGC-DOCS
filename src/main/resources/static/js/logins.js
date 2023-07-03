@@ -302,6 +302,12 @@ function buscarHeaderTabla(textoABuscar){
         case "nombre":
                 texto="Usuario";
                 break;
+        case "username":
+                texto="Usuario";
+                break;
+        case "attempts":
+                texto="Intentos";
+                break;
         default:
             texto=textoABuscar;
             break
