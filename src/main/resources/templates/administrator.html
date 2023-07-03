@@ -62,10 +62,10 @@
       </nav>
 
       <!-- Lista de usuarios -->
-    <section class="docs-emitidos position-relative bg-light" id="hero">
+    <section class="docs-emitidos position-relative bg-light row justify-content-center text-center" id="hero">
       <h2>Listado de usuarios</h2>
 
-      <div id="dvCSV" class="table-responsive text-center table-scrollable"></div>
+      <div id="dvCSV" class="table-responsive text-center table-scrollable col-lg-8"></div>
       <p id="demo"></p>
 
 
@@ -74,22 +74,22 @@
       <!-- onclick="readFile('./media/files/distrib-anual.csv')"  -->
     </section>
 <!-- tabla de salida de consulta DB -->
-    <section class="consulta-db ">
+    <section class="consulta-db row justify-content-center bg-light text-center">
       <h2>Intentos de loggin</h2>
-      <div id="dvCSV2" class="table-responsive text-center table-scrollable"></div>
+      <div id="dvCSV2" class="table-responsive bg-light text-center table-scrollable col-lg-8"></div>
       <p id="demo2"></p>
 
       <form action="#" th:action="@{/admin/del-attemp}"  method="delete">
-        <label for="usuario" class="col-lg-1 col-form-label">Usuario a restablecer: </label>
-        <input type="text" th:value="${sourceText}" id="usuario" name="usuario"/>
-        <input type="submit" class="btn btn-primary mt-3 mb-3" Value="Enviar"></input>
+        <label for="usuario" class="col-lg-2 col-form-label">Usuario a restablecer: </label>
+        <input type="text" th:value="${sourceText}" class="col-lg-2" id="usuario" name="usuario"/>
+        <input type="submit" class="btn btn-primary mt-3 mb-3 col-lg-1" Value="Enviar"></input>
       </form>
 
     </section>
 
-    <section>
+    <section class="row justify-content-center bg-light text-center">
       <form action="#" th:action="@{/admin/reset-all-attemps}" method="delete">
-        <input type="submit" class="btn btn-primary mt-3 mb-3" Value="Reset registro de loggin fallido"></input>
+        <input type="submit" class="btn btn-primary mt-3 mb-3 col-lg-3" Value="Reset registro de loggin fallido"></input>
       </form>
     </section>
 
